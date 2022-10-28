@@ -14,15 +14,15 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 @RequestMapping("/news")
 @RestController
 
 public class NewsController {
-
     @Autowired
     private NewsRepository newsRepository;
 
+//    @CrossOrigin
     @GetMapping("/newsList")
     private Object newsList(News news) {
         newsRepository.findAll();
@@ -35,7 +35,7 @@ public class NewsController {
 
         //IMG_UPLOAD
         String nameImage = "%s.png".formatted(new ResourceIdGenerate().resourceId());
-        String part = "D:\\SRC\\project-master\\src\\assets\\newsImg\\";
+        String part = "D:\\SRC\\project-masterUI\\src\\assets\\newsImg\\";
         File file1 = new File("%s%s".formatted(part,nameImage));
         //IMG_UPLOAD
 

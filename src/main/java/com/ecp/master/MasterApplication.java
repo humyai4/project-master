@@ -10,19 +10,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@LineMessageHandler
 public class MasterApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MasterApplication.class, args);
 
 	}
-	@EventMapping
-	public Message handleTextMessage(MessageEvent<TextMessageContent> e){
-		System.out.println("event: "+e);
-		TextMessageContent message = e.getMessage();
-		return new TextMessage(message.getText());
-	}
-
-
 }
