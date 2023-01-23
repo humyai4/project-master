@@ -18,6 +18,8 @@ public class SpringbootAngularCorsApplication {
         return new WebMvcConfigurer() {
             public void addCoreMappings(CorsRegistry registry){
                 registry.addMapping("/*").allowedOrigins("http://180.183.246.177:1115");
+                registry.addMapping("/*").allowedOrigins("https://fc71-180-183-246-177.ap.ngrok.io");
+
             }
         };
     }

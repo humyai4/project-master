@@ -8,6 +8,7 @@ import com.ecp.master.model.table.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
+import  javax.servlet.http.HttpSession;
 
 
 @CrossOrigin
@@ -23,13 +24,32 @@ public class UserController {
     private UserRepository userRepository;
 
 
-    //USERLIST
+    //USERBYID
+    @GetMapping("/userid")
+    private Object userList(@RequestParam Integer user){
+//        userRepository.findById(id);
+        int id = user;
+        return userRepository.findById(id);
+//        return "ID: " + id;
+    }
+
     @GetMapping("/userList")
-    private Object userList(User user){
+    public  Object userList(User user){
         userRepository.findAll();
         return userRepository.findAll();
     }
 
+
+    //UPDATE
+    @PostMapping("/update")
+    public  Object update(User user){
+        APIResponse response = new APIResponse();
+        userRepository.save(user);
+        System.out.print(user);
+        response.setData(user.getEmail());
+        response.setMessage("success");
+        return response;
+    }
 
 
     //REGISTER
@@ -80,10 +100,13 @@ public class UserController {
     @PostMapping("/login")
     public Object login(User user){
         APIResponse response = new APIResponse();
+
         try {
             User checkUserAndPass = userRepository.findByEmailAndPassword(user.getEmail(),user.getPassword());
             if (checkUserAndPass != null){
+
 //                encoderUtil.passwordEncoder();
+
                 response.setStatus(1);
                 response.setMessage("ล็อกอินสำเร็จ");
                 response.setData(checkUserAndPass.getUsername());

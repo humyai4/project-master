@@ -1,0 +1,120 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My LIFF v2</title>
+  <style>
+    #pictureUrl {
+      display: block;
+      margin: 0 auto
+    }
+.button-67 {
+text-align:center;
+  align-items: center;
+  background: #f5f5fa;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: -10px -10px 30px 0 #fff,10px 10px 30px 0 #1d0dca17;
+  box-sizing: border-box;
+  color: #2a1f62;
+  cursor: pointer;
+  display: flex;
+  font-family: "Cascadia Code",Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+  font-size: 1rem;
+  justify-content: center;
+  line-height: 1.5rem;
+  padding: 15px;
+  position: relative;
+  text-align: left;
+  transition: .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: pre;
+  width: max-content;
+  word-break: normal;
+  word-spacing: normal;
+}
+
+.button-67:hover {
+  background: #f8f8ff;
+  box-shadow: -15px -15px 30px 0 #fff, 15px 15px 30px 0 #1d0dca17;
+}
+
+@media (min-width: 768px) {
+  .button-67 {
+    padding: 24px;
+  }
+}
+
+
+/* Parent background */
+
+  </style>
+</head>
+
+<body>
+<button class="button-67" role="button"
+        onclick="window.location.href = 'http://180.183.246.177:1115/';">
+  กลับสู่ <br>
+  BANDLIKE.COM
+</button>
+
+  <img id="pictureUrl" width="25%">
+  <p id="userId"></p>
+  <p id="displayName"></p>
+  <p id="statusMessage"></p>
+  <p id="getDecodedIDToken"></p>
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.7.1/sdk.js"></script>
+  <script>
+    function runApp() {
+
+      liff.getProfile().then(profile => {
+        document.getElementById("pictureUrl").src = profile.pictureUrl;
+        document.getElementById("userId").innerHTML = '<b>UserId:</b> ' + profile.userId;
+        document.getElementById("displayName").innerHTML = '<b>DisplayName:</b> ' + profile.displayName;
+        document.getElementById("statusMessage").innerHTML = '<b>StatusMessage:</b> ' + profile.statusMessage;
+        document.getElementById("getDecodedIDToken").innerHTML = '<b>Email:</b> ' + liff.getDecodedIDToken().email;
+      }).catch(err => console.error(err));
+    }
+<!--    // function httpGet(theUrl) {-->
+<!--    //   var xmlHttp = new XMLHttpRequest();-->
+<!--    //   xmlHttp.open("GET", theUrl, false); // false for synchronous request-->
+<!--    //   xmlHttp.send(null);-->
+<!--    //   return xmlHttp.responseText;-->
+<!--    // }-->
+<!--    {-->
+<!--    }-->
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// ใส่ liffId ตรงนี้  ///
+    liff.init({ liffId: "1657606401-WgJpKdqY" }, () => {
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// ใส่ liffId ตรงนี้  ///
+      if (liff.isLoggedIn()) {
+       liff.getProfile().then(line => {
+      //   fetch('https://e112-180-183-246-177.ap.ngrok.io/user/userid?user=1/'+ line.userId)
+      // .then(response => response.json())
+      // .then(data => {
+      //   console.log(data);
+      // });
+
+          // httpGet("https://e112-180-183-246-177.ap.ngrok.io/user/userid?user=1")
+
+          // window.location.assign("https://young-castle-10960.herokuapp.com/userqueue/" + el.userId)
+         // window.location.assign("https://203.158.201.70/userqueu e/" + el.userId)
+
+          // window.location.assign("https://young-depths-90743.herokuapp.com/userqueue/" + el.userId)
+          // window.location.assign("http://localhost:3000/userqueue/" + el.userId)
+
+          // localStorage.clear()
+          console.log(line.userId)
+        })
+
+         runApp()
+      } else {
+        // liff.login();
+      }
+    }, err => console.error(err.code, error.message));
+  </script>
+</body>
+
+</html>
