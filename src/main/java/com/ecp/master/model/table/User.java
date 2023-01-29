@@ -16,6 +16,7 @@ import java.util.*;
 
 
 @Entity(name = "users")
+//@SecondaryTable(name = "userlogs", pkJoinColumns = @PrimaryKeyJoinColumn(name ="ulogId"))
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -58,5 +59,11 @@ public class User {
     @Column
     private  String lineID;
 
+//    @Column(name = "active", table = "userlogs")
+//    String active;
+////
+////    //user in log
+//    @Column(name = "uId", table = "userlogs")
+//    int uId;
 
 }

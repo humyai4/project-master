@@ -60,6 +60,8 @@ public class UserController {
             User checkRegister = userRepository.findByEmail(user.getEmail());
             if (checkRegister == null){
 //                user.setPassword(encoderUtil.passwordEncoder().encode(user.getPassword()));
+//                user.setActive("user.getEmail()" + "ทำการสมัครสมาชิก");
+
                 userRepository.save(user);
                 System.out.print(user);
                 response.setData(user.getEmail());

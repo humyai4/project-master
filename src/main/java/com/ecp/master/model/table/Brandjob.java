@@ -2,27 +2,33 @@ package com.ecp.master.model.table;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jdk.jfr.Enabled;
+//import jdk.jfr.Enabled;
 import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+//import java.util.HashSet;
+//import java.util.Set;
 
 @Data
 @ToString
 
-@Entity(name = "brands")
+@Entity(name = "brandjobs")
+@SecondaryTable(name = "userlogs", pkJoinColumns = @PrimaryKeyJoinColumn(name ="ulogId"))
 public class Brandjob {
+
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Column(name = "ulogId", table = "userlogs")
+//    private long ulogId;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Column
-    private String brandName;
+    private String bjName;
 
     @Column
     private String jobPrice;
@@ -40,25 +46,38 @@ public class Brandjob {
 //    inverseJoinColumns = @JoinColumn(name = "mim_id"))
 //    private Set<Mim> mim = new HashSet<>();
 //    //JOB MIM TABLE
-
+//
     @Column
     private String jobType;
     //ชนิดของงาน ประจำ,แทน,ครั้ง
+//
     @Column
     private String description;
 
+    @Column
+    private long userId;
 
-    //ยังไม่เสร็จ
-    @Column(columnDefinition = "HH.mm.ss dd/mmm/yyyy")
-    private LocalDateTime startTime;
 
-    @Column(columnDefinition = "HH.mm.ss dd/mmm/yyyy")
-    private LocalDateTime endTime;
 
+    //
+//
+//    //ยังไม่เสร็จ
+//    @Column(columnDefinition = "HH.mm.ss dd/mmm/yyyy")
+//    private LocalDateTime startTime;
+//
+//    @Column(columnDefinition = "HH.mm.ss dd/mmm/yyyy")
+//    private LocalDateTime endTime;
+//
     @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd/mmm/yyyy")
     private Date dateCreate = new Date();
 
 
+    @Column(name = "active", table = "userlogs")
+    String active;
+
+    //user in log
+    @Column(name = "uId", table = "userlogs")
+    int uId;
 
 
 }
