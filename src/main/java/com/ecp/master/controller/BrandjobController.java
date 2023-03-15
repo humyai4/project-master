@@ -8,6 +8,10 @@ import com.ecp.master.model.table.News;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @CrossOrigin
 @RequestMapping("/brandjob")
 @RestController
@@ -16,21 +20,27 @@ public class BrandjobController {
     @Autowired
     private BrandjobRepository brandjobRepository;
 
-
-
     //FINDBYID
-    //EXAMPLE"http://180.183.246.177:1114/brandjob/jobid?job=2"
+    //EXAMPLE "http://180.183.246.177:1114/brandjob/jobid?job=2"
     @GetMapping("/jobid")
     private Object job(@RequestParam Integer job){
         int id = job;
         return  brandjobRepository.findById(id);
     }
+
+    @GetMapping("/jobs")
+    private Object jobs(@RequestParam("job") List<Integer>id){
+        System.out.print(id);
+        System.out.print(".............................................................");
+        System.out.print(brandjobRepository.findAllById(id));
+        return id;
+    }
+
     @GetMapping("/userid")
     private Object user(@RequestParam Integer user){
         int id = user;
         return  brandjobRepository.findByUserId(id);
     }
-
 
     @GetMapping("/job")
     public  Object job(Brandjob brandjob){

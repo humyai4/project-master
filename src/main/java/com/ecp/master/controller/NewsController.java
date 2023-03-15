@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 
-@CrossOrigin("fc71-180-183-246-177.ap.ngrok.io")
+@CrossOrigin("*")
 @RequestMapping("/news")
 @RestController
 

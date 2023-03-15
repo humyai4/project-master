@@ -59,11 +59,5 @@ public class User {
     @Column
     private  String lineID;
 
-//    @Column(name = "active", table = "userlogs")
-//    String active;
-////
-////    //user in log
-//    @Column(name = "uId", table = "userlogs")
-//    int uId;
 
 }

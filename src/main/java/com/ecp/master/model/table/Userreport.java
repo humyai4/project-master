@@ -2,7 +2,6 @@ package com.ecp.master.model.table;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jdk.jfr.Enabled;
 import lombok.Data;
 import lombok.ToString;
 
@@ -12,18 +11,23 @@ import java.util.Date;
 @Data
 @ToString
 
-@Entity(name = "userlogs")
-public class Userlog {
-
+@Entity(name = "userreport")
+public class Userreport {
     @Id
-    @GeneratedValue(strategy =  GenerationType.AUTO)
-    private long ulogId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @Column
-    private int uId;
+    private String reportType;
 
     @Column
-    private String active;
+    private String userType;
+
+    @Column
+    private String comment;
+
+    @Column
+    private int userId;
 
     @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd/mmm/yyyy")
     private Date dateCreate = new Date();

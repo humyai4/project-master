@@ -4,5 +4,6 @@ import com.ecp.master.model.table.Mim;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MimRepository extends JpaRepository<Mim, Integer> {
-    Mim findById(int id);
+    Mim findByMimId(long mimId);
+    Mim findByMimName(String mimName);
 }
