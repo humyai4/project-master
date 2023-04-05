@@ -10,25 +10,24 @@ import java.util.Date;
 
 @Data
 @ToString
-
-@Entity(name = "userreport")
-public class Userreport {
+@Entity(name = "gallery")
+public class Gallery {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long galleryId;
 
     @Column
-    private String reportType;
+    private long subId;
 
     @Column
-    private String userType;
+    private String galleryName;
 
     @Column
-    private String comment;
+    private long userId;
 
     @Column
-    private int userId;
+    private long bjId;
 
-    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd/mmm/yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH:mm:ss dd/MM/yyyy")
     private Date dateCreate = new Date();
 }

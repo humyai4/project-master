@@ -57,6 +57,8 @@ public class Brandjob {
     @Column
     private long userId;
 
+    @Column
+    private String musicType;
 
 
     //

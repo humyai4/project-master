@@ -5,14 +5,10 @@ import com.ecp.master.model.service.NewsRepository;
 import com.ecp.master.model.table.News;
 import com.ecp.master.util.ResourceIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Map;
-import java.util.Optional;
 
 @CrossOrigin("*")
 @RequestMapping("/news")
@@ -29,15 +25,18 @@ public class NewsController {
         return newsRepository.findAll();
     }
 
+    @GetMapping("/newsId")
+    private Object newsId(@RequestParam Integer newsId){
+        int id = newsId;
+        return  newsRepository.findById(id);
+    }
+
     @PostMapping("/newsCreate")
     private Object newsCreate(News news,@RequestParam("picture") MultipartFile file) {
         APIResponse response = new APIResponse();
-
-        //IMG_UPLOAD
         String nameImage = "%s.png".formatted(new ResourceIdGenerate().resourceId());
-        String part = "D:\\SRC\\project-masterUI\\src\\assets\\newsImg\\";
+        String part = "D:\\SCR\\projectUI\\src\\assets\\newsImg\\";
         File file1 = new File("%s%s".formatted(part,nameImage));
-        //IMG_UPLOAD
 
         try {
             file.transferTo(file1);

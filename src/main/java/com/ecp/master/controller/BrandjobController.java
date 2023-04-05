@@ -38,7 +38,7 @@ public class BrandjobController {
 
     @GetMapping("/userid")
     private Object user(@RequestParam Integer user){
-        int id = user;
+        long id = user;
         return  brandjobRepository.findByUserId(id);
     }
 
@@ -53,11 +53,11 @@ public class BrandjobController {
         APIResponse response = new APIResponse();
         try {
             Brandjob checkRegister = brandjobRepository.findByBjName(brandjob.getBjName());
-            if (checkRegister == null){
+            if (checkRegister == null || checkRegister.getId() == brandjob.getId()){
                 brandjob.setActive("ทำการสร้างการหางาน");
                 brandjobRepository.save(brandjob);
                 System.out.print(brandjob);
-                response.setMessage("JobCreateSuccess");
+                response.setMessage("สำเร็จ");
                 response.setData(brandjob.getId());
                 response.setStatus(1);
             } else {

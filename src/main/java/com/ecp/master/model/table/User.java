@@ -22,7 +22,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-
     @Column
     private String email;
 
@@ -44,7 +43,7 @@ public class User {
     @Column
     private String gender;
 
-    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd/mmm/yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH:mm:ss MM/dd/yyyy")
     private Date dateRegister = new Date();
 
 //    @ManyToMany(fetch = FetchType.LAZY)
@@ -54,10 +53,12 @@ public class User {
 //    private Set<Role> roles = new HashSet<>();
 
     @Column
-    private String role;
+    private long role;
 
     @Column
     private  String lineID;
 
 
+    @Column
+    private String profileImg;
 }

@@ -30,9 +30,9 @@ public class News {
     @Column
     private String newsImg;
 
-    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd/mmm/yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH:mm:ss dd/MM/yyyy")
     private Date dateCreate = new Date();
 
     @Column
-    private String userID;
+    private long userId;
 }

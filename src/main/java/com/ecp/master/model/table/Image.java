@@ -14,20 +14,11 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     @Column
     private String imagesName;
 
+    @Column
+    public  int contentId;
 
-    public void setId(int id){
-        this.id = id;
-    }
-    public  int getId(){
-        return id; }
-
-    public String getImageName() {
-        return imagesName;
-    }
-    public  void  setImageName(String imagesName){
-        this.imagesName = imagesName;
-    }
 }

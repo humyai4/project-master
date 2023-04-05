@@ -21,8 +21,21 @@ public class Chooseband {
     private long bjId;
 
     @Column
+    private long userId;
+
+    @Column
     private long empId;
 
-    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd/mmm/yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH:mm:ss MM/dd/yyyy")
+    private Date eventStart;
+
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH:mm:ss MM/dd/yyyy")
+    private Date eventEnd;
+
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH:mm:ss MM/dd/yyyy")
     private Date dateCreate = new Date();
+
+    @Column
+    private int status;
+
 }

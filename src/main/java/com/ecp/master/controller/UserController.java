@@ -3,12 +3,17 @@ package com.ecp.master.controller;
 
 import com.ecp.master.model.bean.APIResponse;
 import com.ecp.master.model.service.UserRepository;
+import com.ecp.master.model.table.Brandjob;
 import com.ecp.master.model.table.User;
 //import com.ecp.master.util.EncoderUtil;
+import com.ecp.master.util.ResourceIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import  javax.servlet.http.HttpSession;
+import java.io.File;
 
 
 @CrossOrigin("*")
@@ -16,9 +21,7 @@ import  javax.servlet.http.HttpSession;
 @RestController
 
 public class UserController {
-//
-//    @Autowired
-//    private EncoderUtil encoderUtil;
+
 
     @Autowired
     private UserRepository userRepository;
@@ -27,10 +30,14 @@ public class UserController {
     //USERBYID
     @GetMapping("/userid")
     private Object userList(@RequestParam Integer user){
-//        userRepository.findById(id);
         int id = user;
         return userRepository.findById(id);
-//        return "ID: " + id;
+    }
+
+    @GetMapping("/userrole")
+    private  Object userroles(@RequestParam Integer userroles){
+        long role = userroles;
+        return userRepository.findByRole(role);
     }
 
     @GetMapping("/userList")
@@ -39,15 +46,33 @@ public class UserController {
         return userRepository.findAll();
     }
 
-
-    //UPDATE
-    @PostMapping("/update")
+    @PostMapping("/updatestring")
     public  Object update(User user){
         APIResponse response = new APIResponse();
         userRepository.save(user);
         System.out.print(user);
         response.setData(user.getEmail());
         response.setMessage("success");
+        return response;
+    }
+    //UPDATE
+    @PostMapping("/update")
+    public  Object update(User user,@RequestParam("picture") MultipartFile file){
+        APIResponse response = new APIResponse();
+        String nameImage = "%s.png".formatted(new ResourceIdGenerate().resourceId());
+        String part = "D:\\SCR\\projectUI\\src\\assets\\newsImg\\";
+        File file1 = new File("%s%s".formatted(part,nameImage));
+        try {
+            file.transferTo(file1);
+            user.setProfileImg(nameImage);
+            userRepository.save(user);
+            System.out.print(user);
+            response.setData(user.getEmail());
+            response.setMessage("success");
+        }catch (Exception e){
+            response.setStatus(12);
+            response.setMessage("err");
+        }
         return response;
     }
 
@@ -59,9 +84,6 @@ public class UserController {
         try {
             User checkRegister = userRepository.findByEmail(user.getEmail());
             if (checkRegister == null){
-//                user.setPassword(encoderUtil.passwordEncoder().encode(user.getPassword()));
-//                user.setActive("user.getEmail()" + "ทำการสมัครสมาชิก");
-
                 userRepository.save(user);
                 System.out.print(user);
                 response.setData(user.getEmail());
@@ -128,25 +150,13 @@ public class UserController {
         }
         return response;
     }
-
-//    UPDATE
-//    @PutMapping ("/userUpdate")
-//    private Object update(User user, int id){
-//        APIResponse response = new APIResponse();
-//        try {
-//            var data = userRepository.findById(id);
-//            user.setId(data.getId());
-//            user.setFName(data.getFName());
-//            user.setEmail(data.getEmail());
-//            userRepository.save(user);
-//            response.setMessage("update..");
-//            response.setData(data.getFName());
-//
-//        }catch (Exception err){
-//            response.setMessage(err.toString());
-//        } return response;
-//    }
-
+    @PostMapping("/delete")
+    public  Object delete(User user){
+        APIResponse response = new APIResponse();
+        userRepository.delete(user);
+        response.setMessage("success");
+        return response;
+    }
 
     }
 

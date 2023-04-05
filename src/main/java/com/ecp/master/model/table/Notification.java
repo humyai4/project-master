@@ -1,9 +1,11 @@
 package com.ecp.master.model.table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @ToString
@@ -27,6 +29,9 @@ public class Notification {
 
     @Column
     private String readstatus;
+
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH:mm:ss MM/dd/yyyy")
+    private Date dateCreate = new Date();
 
 
 }
