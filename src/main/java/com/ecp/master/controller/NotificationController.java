@@ -6,6 +6,9 @@ import com.ecp.master.model.table.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+import java.util.List;
+
 @CrossOrigin("*")
 @RequestMapping("/noti")
 @RestController
@@ -17,6 +20,12 @@ public class NotificationController {
     private Object getnoti(Notification notification){
         notificationRepository.findAll();
         return  notificationRepository.findAll();
+    }
+
+    @GetMapping("/getbyuserid") //empId
+    private  Object userid(@RequestParam Integer userid){
+        int id = userid;
+        return  notificationRepository.findByUserIdTo(id);
     }
 
     @PostMapping("/createnoti")

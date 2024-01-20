@@ -35,7 +35,7 @@ public class NewsController {
 
         //IMG_UPLOAD
         String nameImage = "%s.png".formatted(new ResourceIdGenerate().resourceId());
-        String part = "D:\\SRC\\project-masterUI\\src\\assets\\newsImg\\";
+        String part = "D:\\SCR\\projectUI\\src\\assets\\newsImg\\";
         File file1 = new File("%s%s".formatted(part,nameImage));
         //IMG_UPLOAD
 

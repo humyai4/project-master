@@ -11,21 +11,25 @@ import java.util.Date;
 @Data
 @ToString
 
-@Entity(name = "chooseband")
-public class Chooseband {
+@Entity(name = "perform")
+public class Perform {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private  long performId;
 
     @Column
-    private long bjId;
+    private String performName;
 
     @Column
-    private long userId;
+    private String performDescrips;
 
     @Column
-    private long empId;
+    private long performUser;
+
+    @Column
+//    contentId
+    private long performImg;
 
     @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd/mm/yyyy")
-    private Date dateCreate = new Date();
+    private Date performDateCreate = new Date();
 }

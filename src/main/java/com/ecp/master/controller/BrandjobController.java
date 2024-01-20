@@ -38,7 +38,7 @@ public class BrandjobController {
 
     @GetMapping("/userid")
     private Object user(@RequestParam Integer user){
-        int id = user;
+        long id = user;
         return  brandjobRepository.findByUserId(id);
     }
 

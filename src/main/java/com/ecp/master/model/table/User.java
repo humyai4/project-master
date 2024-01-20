@@ -44,7 +44,7 @@ public class User {
     @Column
     private String gender;
 
-    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd/mmm/yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd/mm/yyyy")
     private Date dateRegister = new Date();
 
 //    @ManyToMany(fetch = FetchType.LAZY)
